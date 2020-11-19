@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--用自定义属性悄悄记录按钮的点击次数-->
+  <button data-n="0">click me</button>
+  <script>
+    //DOM 4步
+    //1. 查找触发事件的元素
+    //本例中: 查找带有data-n属性的元素
+    //复习第二阶段属性选择器
+    var btn=document.querySelector(
+      "[data-n]"
+    )
+    //2. 绑定事件处理函数
+    btn.onclick=function(){
+      //3. 查找要修改的元素
+      //本例中: 不用找，因为就是要修改自己
+      //4. 修改元素
+      //4.1 取出当前按钮身上自定义属性data-n的值
+      var n=parseInt(
+        //this.getAttribute("data-n")
+       
+       this.getAttribute("data-n")
+       
+        //页面上的一切都是字符串
+      );
+      console.log(n);
+      
+      //4.2 数量+1
+      n++;
+      //4.3 将新值放回自定义属性中
+      //this.setAttribute("data-n",n);
+      this.dataset.n=n;
+    }
+  </script>
+</body>
+</html>

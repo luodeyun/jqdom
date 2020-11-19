@@ -1,0 +1,111 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>动态创建表格</title>
+  <meta charset="utf-8" />
+  <style>
+    table {
+      width: 600px;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    td,
+    th {
+      border: 1px solid #ccc
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="data">
+    <table>
+ 
+    </table>
+  </div>
+  <script>
+    var json = [{
+        "ename": "Tom",
+        "salary": 11000,
+        "age": 25
+      },
+      {
+        "ename": "John",
+        "salary": 13000,
+        "age": 28
+      },
+      {
+        "ename": "Mary",
+        "salary": 12000,
+        "age": 25
+      },
+      {
+        "ename": "Mary",
+        "salary": 12000,
+        "age": 25
+      }
+    ];
+var tbody = document.createElement('tbody')
+var table=document.querySelector("#data>table");
+var thead = document.createElement('thead')
+var tr = document.createElement('tr')
+thead.appendChild(tr)
+for (var name in json[0]){
+  var th = document.createElement('th')
+  tr.appendChild(th)
+  console.log(name);
+  table.appendChild(thead)
+  th.innerHTML = name
+}
+
+
+
+for (var emp of json){
+
+  var tr = document.createElement('tr')
+
+  tbody.appendChild(tr)
+ 
+  
+  for (key in emp){
+    var td = document.createElement('td')
+    tr.appendChild(td)
+    td.innerHTML =emp[key]
+  }
+}
+var table = document.querySelector('#data>table')
+       table.appendChild(tbody)
+    //创建tbody
+    // var tbody=document.createElement("tbody");
+
+    // //遍历json数组中每个员工对象
+    // for(var emp of json){
+    //   //每遍历一个员工对象，就要创建tr，添加到tbody下
+    //   // var tr=document.createElement("tr");
+    //   // tbody.appendChild(tr);
+    //   //每次都在末尾追加新行
+    //   // var tr=tbody.insertRow();
+    //   //每次都在开头插入新航
+    //   var tr=tbody.insertRow(0);
+    //   //遍历当前员工对象中每个属性
+    //   for(var key in emp){
+    //     //每遍历一个属性，就创建一个td，添加到tr下
+    //     var td=document.createElement("td");
+    //     tr.appendChild(td);
+    //     //设置当前td的内容为当前员工对象emp的当前属性值
+    //     td.innerHTML=emp[key]; //复习js高级day04->2.3
+    //   }
+    // }
+
+    // //最后在查找table，将tbody一次性装入table中
+    // //只需要一次重绘页面即可！
+    // var table=document.querySelector("#data>table");
+    // table.appendChild(tbody);
+    // console.log(tbody);
+    
+  </script>
+</body>
+
+</html>

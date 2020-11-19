@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .score {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .score li {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 1px solid #f00;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h3>请打分</h3>
+<ul class="score">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  // var arr=[1,2,3,4,5];
+  // //       0 1 2 3 4
+  // //想知道3在数组中的哪个下标位置
+  // var i=arr.indexOf(3);
+  // console.log(`3在数组中下标为[${i}]的位置`);
+  //获得当前单击的li在所有li中的位置i,i及其执行的都变为红色，i之后的都变为白色
+  //DOM4步
+  //1. 查找触发事件的元素
+  //本例中ul下所有里都能点击
+  var $lis=$("ul>li");
+  //2. 绑定事件处理函数
+  console.log($lis);
+  
+  // $lis.click(function(){
+  //   //3. 查找要修改的元素
+  //   //4. 修改元素
+  //   //先获得当前点击的时第几个li
+  //   //其实就是在所有li中找当前li的下标位置
+  //   var i=$lis.index(this);
+  //   console.log(i);
+  //   //让<i+1位置的所有li背景变为黄色
+  //   //           变量
+  //   $(`ul>li:lt(${i+1})`)
+  //     .css("background-color","yellow");
+  //   //让>i位置的所有li背景变为白色
+  //   $(`ul>li:gt(${i})`)
+  //     .css("background-color","#fff")
+  // })
+// $(".score").click(function(e){
+//   console.log(e.target);
+//   if($(e.target).is('li')){
+//     i= $('ul li').index($(e.target));
+//     console.log(i);
+//     $(`ul li:lt(${i+1})`).css('background-color','yellow')
+//     $(`ul li:gt(${i})`).css('background-color','white')
+//   }
+// })
+
+</script>
+</body>
+</html>

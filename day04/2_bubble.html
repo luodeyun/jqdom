@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>事件处理</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/2.css"/>
+		
+	</head>
+	<body>
+		<div id="d1">
+			<div id="d2">
+				<div id="d3">
+				</div>
+			</div>
+		</div>
+    <script>
+			var d1=document.getElementById("d1");
+			var d2=document.getElementById("d2");
+			var d3=document.getElementById("d3");
+			//希望点哪个div，就只有哪个div喊疼！
+			d1.onclick=function(){
+				alert(`d1 疼!`)
+			}
+			d2.onclick=function(e){
+				e.stopPropagation();
+				alert(`d2 疼!`);
+			}
+			d3.onclick=function(e){
+				//停止事件继续向上层冒泡
+				e.stopPropagation();
+				alert(`d3 疼!`);
+			}
+		</script>
+	</body>
+</html>

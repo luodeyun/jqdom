@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  </style>
+</head>
+<body>
+
+<ul id="list">
+  <li>98</li>
+  <li>85</li>
+  <li>33</li>
+  <li>99</li>
+  <li>52</li>
+</ul>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  var arr=["亮亮","然然","东东"];
+  arr.forEach(function(elem){
+    console.log(`${elem} - 到！`)
+    console.log(elem);
+    
+  })
+  //请给每个不足60分的成绩+10分，并将超过90分的成绩用绿色背景标识出来
+  $("ul>li").each(function(i,elem){
+    //先包装elem为$elem
+    console.log(elem);
+    var $elem=$(elem);
+    console.log($elem.html());
+    //获得当前li中的分数，转为整数
+    var score=parseInt($elem.html());
+    //如果当前li的内容<60，就加10分
+    if(score<60){
+      score+=10;
+      $elem.html(score);//再放回去
+    }else if(score>=90){//否则如果当前li的内容>=90，就设置当前li的背景为绿色！
+      $elem.css("background-color","green");
+    }
+  })
+
+</script>
+</body>
+</html>

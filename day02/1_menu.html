@@ -1,0 +1,98 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>1. 实现伸缩二级菜单</title>
+	<meta charset="utf-8" />
+	<style>
+		li {
+			list-style: none;
+		}
+
+		li span {
+			padding-left: 20px;
+			cursor: pointer;
+			background: url("images/add.png") no-repeat center left;
+		}
+
+		li ul {
+			display: none;
+		}
+		.open {
+			background: url("images/minus.png") no-repeat center left;
+		}
+
+		.open+ul {
+			display: block;
+		}
+	</style>
+
+</head>
+
+<body>
+	<ul class="tree">
+		<li>
+			<span class="open">考勤管理</span>
+			<ul>
+				<li>日常考勤</li>
+				<li>请假申请</li>
+				<li>加班/出差</li>
+			</ul>
+		</li>
+		<li>
+			<span>信息中心</span>
+			<ul>
+				<li>通知公告</li>
+				<li>公司新闻</li>
+				<li>规章制度</li>
+			</ul>
+		</li>
+		<li>
+			<span>协同办公</span>
+			<ul>
+				<li>公文流转</li>
+				<li>文件中心</li>
+				<li>内部邮件</li>
+				<li>即时通信</li>
+				<li>短信提醒</li>
+			</ul>
+		</li>
+	</ul>
+	<script>
+		//DOM 4步
+		//1. 查找触发事件的元素
+		//本例中: 查找所有li下的span
+		var spans=document.querySelectorAll(
+			"li>span"
+		);
+		//2. 绑定事件处理函数
+		//本例中: 遍历找到的每个span，为每个span绑定单击事件
+		for(var span of spans){
+			span.onclick=function(){
+				//3. 查找要修改的元素
+				//4. 修改元素
+				//本例中: 
+				//如果当前span自己是开着的
+				//其实就是看当前span的class属性值是不是open
+				// if(this.getAttribute("class")=="open"){
+				if(this.className=="open"){
+					//只要把自己关上即可！不用管别的span
+					//其实就是清除当前span的class属性值
+					// this.setAttribute("class","")
+					this.className="";
+				}else{//否则如果当前span不是开着的
+					//先遍历所有span，清除每个span的class
+					 for(var span of spans){
+					 span.setAttribute("class","");
+					 	span.className="";
+					}
+					//再只给当前单击的span自己加class open
+					// this.setAttribute("class","open");
+					this.className="open";
+				}
+			}
+		}
+	</script>
+</body>
+
+</html>

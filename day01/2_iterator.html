@@ -1,0 +1,49 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>遍历节点树</title>
+		<meta charset="utf-8"/>
+		
+	</head>
+	<body>
+		用户名: <input name="uname"><br/>
+		<span>Hello World !</span>
+		<ul id="nav">
+			<li class="item parent">电影</li>
+			<li class="item parent">综艺
+				<ul>
+					<li class="item child">跑男</li>
+					<li class="active item child">爸爸</li>
+					<li class="item child">极限</li>
+				</ul>
+			</li>
+			<li class="item parent">剧集</li>
+		</ul>	
+    <script>
+			//查找id为nav的一个ul元素
+			var ul=document.getElementById("nav");
+			console.log(ul);
+			//查找ul下的所有li
+			var lis=ul.getElementsByTagName("li");
+			console.log(lis);//六个
+			//查找ul下所有直接子元素li
+			var children=ul.children;
+			console.log(children);//3个
+			//想修改span的内容为❀
+			var span=document.getElementsByTagName("span")[0];
+			console.log(span);
+			span.innerHTML="❀";
+			//想找ul下所有class为item的元素
+			var items=ul.getElementsByClassName("item");
+			console.log(items);//6个
+			//想找到class为active的元素，将其内容改为❀
+			var active=ul.getElementsByClassName("active")[0];
+			console.log(active);
+			active.innerHTML="❀";
+			//想找到name属性为uname的文本框，并设置其内容为❀
+			var input=document.getElementsByName("uname")[0];
+			console.log(input);
+			input.value="❀";
+		</script>
+	</body>
+</html>

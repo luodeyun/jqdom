@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>...</title>
+	<style>
+		ul{
+			list-style:none
+		}
+		ul>li{
+			float:left;
+			border:1px solid #aaa;
+			padding:5px 10px;
+		}
+		/*用纯css实现按钮组效果*/
+		/*第一个li左上，左下变圆角*/
+		/* ul>li:first-child{
+			border-radius:5px 0 0 5px
+		} */
+		/*最后一个li右上, 右下变圆角*/
+		/* ul>li:last-child{
+			border-radius:0 5px 5px 0
+		} */
+		/*将第一li之后所有兄弟去掉左边框*/
+		/* ul>li~li{
+			border-left:0
+		} */
+
+	</style>
+	<script src="js/jquery-1.11.3.js"></script>
+</head>
+
+<body>
+	<h1>实现按钮组效果</h1>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+	<script>
+		/*用js实现按钮组效果*/
+		/*第一个li左上，左下变圆角*/
+		$("ul>li:first").css("border-radius","5px 0 0 5px");
+		/*最后一个li右上, 右下变圆角*/
+		$("ul>li:last").css("border-radius","0 5px 5px 0");
+		/*将第一li之后所有兄弟去掉左边框*/
+		$("ul>li:gt(0)").css("border-left",0)
+	</script>
+</body>
+
+</html>

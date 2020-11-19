@@ -1,0 +1,94 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>动态创建表格</title>
+  <meta charset="utf-8" />
+  <style>
+    table {
+      width: 600px;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    td,
+    th {
+      border: 1px solid #ccc
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="data">
+    <table>
+      <thead>
+        <tr>
+          <th>ename</th>
+          <th>salary</th>
+          <th>age</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <script>
+    var json = [
+      { "ename": "Tom", "salary": 11000, "age": 25 },
+      { "ename": "John", "salary": 13000, "age": 28 },
+      { "ename": "Mary", "salary": 12000, "age": 25 }
+    ];
+
+    var table=document.querySelector("#data>table");
+
+    //创建tbody
+    var tbody=document.createElement("tbody");
+    
+    //遍历json数组中每个员工对象
+    for(var emp of json){
+      //每遍历一个员工对象，就要创建tr，添加到tbody下
+      //每次都在末尾追加新行
+      var tr=tbody.insertRow();
+      //遍历当前员工对象中每个属性
+      for(var key in emp){
+        //每遍历一个属性，就创建一个td，添加到tr下
+        // var td=document.createElement("td");
+        // tr.appendChild(td);
+        var td=tr.insertCell();
+        //设置当前td的内容为当前员工对象emp的当前属性值
+        td.innerHTML=emp[key]; //复习js高级day04->2.3
+      }
+      //除了遍历当前对象的每个属性添加的数据格之外，额外再多添加一个格
+      // var td=document.createElement("td");
+      // tr.appendChild(td);
+      var td=tr.insertCell();
+      //每个td中要再添加一个按钮
+      var btn=document.createElement("button");
+      btn.innerHTML="×";
+      td.appendChild(btn);
+      //为每个删除按钮绑定单击事件
+      btn.onclick=function(){
+        //根据当前点的按钮逐级找到当期要删除的行
+        var tr=this.parentElement //td
+                   .parentElement //tr
+        //获取当前行中第一个td的内容
+        // var ename=tr.children[0].innerHTML;
+        var ename=tr.cells[0].innerHTML;
+        //先跟用户确认是否删除
+        var result=confirm(`是否继续删除 ${ ename } 吗？`);
+        //只有用户点确定，确认继续删除时，才执行删除操作
+        if(result==true){
+          //删除table中一行的标准做法
+          table.deleteRow(tr.rowIndex);
+        }//否则如果用户点取消，说明用于反悔了！就什么也不做！
+      }
+    }
+
+    //最后在查找table，将tbody一次性装入table中
+    //只需要一次重绘页面即可！
+    
+    table.appendChild(tbody);
+  </script>
+</body>
+
+</html>

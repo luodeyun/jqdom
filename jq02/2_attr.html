@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+ </head>
+ <body>
+	<h1>操作元素的属性</h1>
+	<img src="img/1.jpg" alt="1">
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		//单击图片，切换下一张
+		//DOM 4步
+		//1. 查找触发事件的元素
+		//本例中: 单击img触发变化
+		var $img=$("img")
+		//2. 绑定事件处理函数
+		$img.click(function(){
+			//3. 查找要修改的元素
+			//本例中:要改的就是自己
+			var $this=$(this);
+			//4. 修改元素
+			//4.1 先获得现在正在看第几张图片
+			//本例中: 利用img元素的alt属性临时存储第几张图片的序号，所以获得alt属性值
+			//因为alt属性是字符串类型的HTML标准属性，所以即可用.attr()又可用.prop()
+			var i=parseInt($this.attr("alt"))
+			//4.2 如果i<4，就i++，否则i=1
+			if(i<4){
+				i++;
+			}else{
+				i=1;
+			}
+			//4.3 即要将i拼接成新的图片路径保存到当前图片的src属性中，又要修改当前图片的alt属性值为新的i。
+			//因为src属性也是字符串类型的HTML标准属性，所以即可用.attr()又可用.prop()
+			$this.attr({
+				src:`img/${i}.jpg`,
+				alt:i
+			})
+		})
+	</script>
+ </body>
+</html>

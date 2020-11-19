@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .btn {
+      padding: 5px 10px;
+      border-radius: 3px;
+      border: 1px solid #aaa;
+      outline: none;
+    }
+    /*准备了两个class*/
+    /*按钮抬起时的样式*/
+    .up {
+      background: #fff;
+      color: #333;
+    }
+    /*按钮按下时的样式*/
+    .down {
+      background: #ddd;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!--开局, 按钮默认是抬起的，所以已经提前放好了up样式类-->
+  <!--当单击按钮时，只要添加down样式类，就可覆盖up样式类。再次单击按钮，只要移除down样式类，就可恢复成up样式类-->
+  <button class="btn up">双态按钮</button>
+
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  //双态按钮: 让按钮的class在up和down之间切换
+  //DOM 4步
+  //1. 查找触发事件的元素
+  //本例中: 点按钮触发变化
+  var $btn=$("button");
+  //2. 绑定事件处理函数
+  $btn.click(function(){
+    //3. 查找要修改的元素
+    //本例中: 就要修改自己
+    // var $this=$(this)
+    //4. 修改元素
+    //如果当前按钮有down样式类
+    // if($this.hasClass("down")){
+    //   //就移除down
+    //   $this.removeClass("down");
+    // }else{//否则如果没有down样式类
+    //   //就添加down样式类
+    //   $this.addClass("down");
+    // }
+
+    //最简化写法: 
+    $(this).toggleClass("down");
+          //自动在有down和没有down之间切换
+  })
+</script>
+</body>
+</html>

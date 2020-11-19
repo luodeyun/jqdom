@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>管理员列表</h2>
+    <table border="1px" width="500px">
+        <thead>
+            <tr>
+                <th><input type="checkbox" />全选</th>
+                <th>管理员ID</th>
+                <th>姓名</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>1</td>
+                <td>Tester</td>
+                <td>修改 删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>2</td>
+                <td>Manager</td>
+                <td>修改 删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>3</td>
+                <td>Analyst</td>
+                <td>修改 删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>4</td>
+                <td>Admin</td>
+                <td>修改 删除</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var inputAll = document.querySelector('table>thead input')
+        var inputs = document.querySelectorAll('table>tbody input')
+        inputAll.onclick = function(){
+            for (input of inputs){
+                input.checked=this.checked
+            }
+        }
+        for(var input of inputs){
+            input.onclick=function(){
+                 var unchecked = document.querySelector('tbody input:not(:checked)')
+            if(unchecked==null){
+                inputAll.checked=true
+            }else{
+                inputAll.checked=false
+            }
+            }
+        }
+        // var inputAll = document.querySelector('table>thead input')
+        // var inputs = document.querySelectorAll('table>tbody input')
+        // inputAll.onclick = function () {
+        //     for (input of inputs) {
+        //         input.checked = this.checked
+        //     }
+        // }
+        // for (var input of inputs) {
+        //     input.onclick = function () {
+        //         console.log('2');
+        //         var unchecked = document.querySelector(
+        //             "tbody input:not(:checked)"
+        //         )
+        //         if (unchecked == null) {
+        //             inputAll.checked = true
+        //         } else {
+        //             inputAll.checked = false
+        //         }
+
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

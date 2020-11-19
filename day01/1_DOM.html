@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+
+<body>
+  <h1>jQuery/$工厂函数</h1>
+  <button id="btn1">click me(0)</button>
+  <!--              0123456789-1
+                   .innerHTML
+                   .slice(   9,-1)-->
+  <script>
+    //DOM 4步
+    //1. 查找触发事件的元素
+    var btn=document.getElementById("btn1")
+    //2. 绑定事件处理函数
+    btn.onclick=function(){
+      //3. 查找要修改的元素
+      //本例中: 修改自己this，不用找
+      //4. 修改元素
+      //4.1 取出现在的点击次数转为整数
+      //                      复习第一阶段slice
+      var n=parseInt(this.innerHTML.slice(9,-1));
+      //4.2 次数+1
+      n++;
+      //4.3 放回按钮内容中，但是拼的格式要和最初一模一样
+      this.innerHTML=`click me(${n})`;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		.container {
+			border: 1px solid #aaa;  overflow:hidden;
+		}
+		.block {
+			float: left; margin: 10px;
+			border: 1px solid #aaa;
+			background: #faa;
+			width: 150px; height: 150px;
+		}
+		.block:hover{ box-shadow:0 5px 6px #000; }
+		.close {
+			float:right; padding:5px;
+			font-weight:bold; opacity:.2; cursor: pointer;
+		}
+		.close:hover { opacity: .5; }
+	</style>
+ </head>
+ <body>
+  <h1>添加/删除节点</h1>
+	<button id="add-block">添加区块</button>
+	
+	<div class="container">
+		<!-- <div class="block">
+			<span class="close">×</span>
+		</div> -->
+	</div>
+	
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		//DOM 4步
+		//1. 查找触发事件的元素
+		//本例中: 点按钮添加新方块
+		var $btn=$("#add-block");
+		//2. 绑定事件处理函数
+		$btn.click(function(){
+			//3. 查找要修改的元素
+			//本例中: 点击按钮向下方class为container的div中添加新方块
+			var $div=$(".container");
+			//4. 修改元素
+			//4.1 先创建新方块元素: 
+			var $block=$(`<div class="block">
+				<span class="close">×</span>
+			</div>`);
+			//4.2 为新方块设置随机背景色
+			$block.css("background-color",`rgb(${
+				parseInt(Math.random()*255)
+			},${
+				parseInt(Math.random()*255)
+			},${
+				parseInt(Math.random()*255)
+			})`)
+			//4.3 将新方块元素添加到div中
+			$div.prepend($block);
+		})
+	</script>
+	
+ </body>
+</html>

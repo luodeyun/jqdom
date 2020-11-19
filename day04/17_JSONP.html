@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function justdoit(data){
+      console.log(`自动调用了justdoit()`)
+      alert(data);
+      console.log(data);
+    }
+  </script>
+  <script src="http://localhost:3000?callback=justdoit">
+    //特点: 接收一条js程序，并立刻执行js程序
+    //`doit("北京 下雨 26~19")`
+  </script>
+</body>
+</html>

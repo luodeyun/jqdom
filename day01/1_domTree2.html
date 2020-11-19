@@ -1,0 +1,33 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>DOM Tree</title>
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+		<span id="s1">Hello</span>
+		<h1>标题一</h1>
+		<script>
+			//强调: 任何元素都必须先查找再使用！
+			//获得body元素
+			var body=document.body;
+			console.log(body);
+			//获得body下第一个孩子span
+			//错误:
+			// var span=body.firstChild;
+			//正确: 
+			var span=body.firstElementChild;
+			console.log(span);
+			//获得span的下一个兄弟h1
+			//错误: 
+			// var h1=span.nextSibling;
+			var h1=span.nextElementSibling;
+			console.log(h1);
+			//判断h1的父元素是不是body元素
+			console.log(h1.parentElement==body);//true
+		</script>
+	</body>
+
+</html>

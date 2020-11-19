@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>jQueryAPI特点</h1>
+  <button id="btn1">click me(0)</button>
+  <button id="btn2">click me(0)</button>
+  <button id="btn3">click me(0)</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //DOM 4步
+    //1. 查找触发事件的元素
+    //本例中三个按钮都可点击
+    var $btns=$("button");
+    console.log($btns);
+    //2. 绑定事件处理函数
+    //为每个按钮都绑定单击事件
+    $btns.click(function(){
+  //相当于: for(...)
+  //$btns[0].onclick=function(){ ...this... };
+  //$btns[1].onclick=function(){ ...this... };
+  //$btns[2].onclick=function(){ ...this... };
+      //3. 查找要修改的元素
+      var $this=$(this);
+      //4. 修改元素
+      //4.1 取出现在的点击次数转为整数
+      // var n=this.innerHTML.slice(9,-1);
+      var n=parseInt($this.html().slice(9,-1));
+      //4.2 次数+1
+      n++;
+      //4.3 放回按钮内容中，但是拼的格式要和最初一模一样
+      // this.innerHTML=`click me(${n})`;
+      $this.html(`click me(${n})`)
+    })
+    
+  </script>
+</body>
+</html>

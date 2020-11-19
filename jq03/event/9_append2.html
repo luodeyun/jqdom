@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		.container {
+			border: 1px solid #aaa;  overflow:hidden;
+		}
+		.block {
+			float: left; margin: 10px;
+			border: 1px solid #aaa;
+			background: #faa;
+			width: 150px; height: 150px;
+		}
+		.block:hover{ box-shadow:0 5px 6px #000; }
+		.close {
+			float:right; padding:5px;
+			font-weight:bold; opacity:.2; cursor: pointer;
+		}
+		.close:hover { opacity: .5; }
+	</style>
+ </head>
+ <body>
+  <h1>添加/删除节点</h1>
+	<button id="add-block">添加区块</button>
+	
+	<div class="container">
+		<!-- <div class="block">
+			<span class="close">×</span>
+		</div> -->
+	</div>
+	
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		//功能1: 点击按钮添加新方块
+		//DOM4步
+		//1. 查找触发事件的元素
+		//本例中: 查找按钮
+		// id选择器
+		$("#add-block")//因为只用一次，所以不用放变量
+		//2. 绑定事件处理函数
+		.click(function(){
+			//3. 查找要修改的元素
+			//4. 修改元素
+			//4.1 使用HTML片段创建一个新的块元素
+			$(`<div class="block">
+				<span class="close">×</span>
+			</div>`)//新块元素
+			//4.2 设置块元素的背景色为随机颜色
+			.css("background-color",`rgb(${
+				parseInt(Math.random()*256)//每个颜色值从0~255
+			},${
+				parseInt(Math.random()*256)//每个颜色值从0~255
+			},${
+				parseInt(Math.random()*256)//每个颜色值从0~255
+			})`)
+			//4.3 将新创建的块插入到div的开头！
+			.prependTo(".container");//自动查找父元素！
+		});
+
+		//功能2: 点x，删除x所在的块元素
+		//DOM4步
+		//1. 查找触发事件的元素
+		//解决: 本来多个平级的x按钮都需要单击。事件应该只绑定在父元素上一份即可！所有x按钮都冒泡使用父元素上的单击事件处理哈函数！——复习DOM第四天！
+		$(".container")
+		//2. 绑定事件处理函数
+		//           类选择器: 只希望class为close的按钮才能触发事件 
+		.on("click",".close",function(){
+			//this->e.target
+			//3. 查找要修改的元素
+			//4. 修改元素
+			//删除当前×按钮的父元素块
+			$(this).parent().remove();
+		})
+	</script>
+	
+ </body>
+</html>

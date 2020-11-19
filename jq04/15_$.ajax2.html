@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>品名: <span id="title"></span></li>
+    <li>描述: <span id="subtitle"></span></li>
+    <li>单价: ¥<span id="price"></span></li>
+    <li>服务承诺: <span id="promise"></span></li>
+  </ul>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //!!!地址栏: xxx.html?lid=10
+
+    //从地址栏获得查询字符串参数
+    var search=location.search;
+    //如果有查询字符串参数的话
+    if(search!==""){
+      console.log(search);//?lid=10
+      //                        |
+      //                 ["?lid","10"]
+      //                    [0]   [1]
+      //将search按=切割，然后取第二部分商品编号值
+      var lid=search.split("=")[1];
+
+      //想从东哥新浪云服务器请求5号商品的详细信息
+      $.ajax({
+        url:"http://xzserver.applinzi.com/details",
+        type:"get",
+        //将从地址栏获得的商品编号值，传到服务器上，作为查询商品详细信息的条件。
+        data:{lid},//{ lid:lid },
+        dataType:"json",
+        success:function(result){
+          console.log(result);
+          var {product}=result;
+          var {title, subtitle, price, promise}=product;
+          $("#title").html(title);
+          $("#subtitle").html(subtitle);
+          $("#price").html(price.toFixed(2));
+          $("#promise").html(promise);
+        }
+      })
+    }
+  </script>
+</body>
+</html>

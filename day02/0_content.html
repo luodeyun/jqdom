@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--            什么也不做    -->
+  <p id="p1">来自<a href="javascript:;">&lt;&lt;新华社&gt;&gt;</a>的消息</p>
+  <input/><button id="btn">百度一下</button>
+  <script>
+    var p1=document.getElementById("p1");
+    //想获取p元素的内容
+    console.log(p1.innerHTML);
+    //想获得p元素的内容，但是想去掉内嵌的标签和特殊符号，只获取文字
+    console.log(p1.textContent);
+    
+    //想点击按钮，获得旁边文本框的内容
+    var btn=document.getElementById("btn");
+    btn.onclick=function(){
+      //获得当前按钮的前一个兄弟input元素
+      var input=this.previousElementSibling;
+      console.log(`查找 ${input.value} 相关的内容...`)
+    }
+  </script>
+</body>
+</html>

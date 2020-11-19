@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		.container {
+			border: 1px solid #aaa;  overflow:hidden;
+		}
+		.block {
+			float: left; margin: 10px;
+			border: 1px solid #aaa;
+			background: #faa;
+			width: 150px; height: 150px;
+		}
+		.block:hover{ box-shadow:0 5px 6px #000; }
+		.close {
+			float:right; padding:5px;
+			font-weight:bold; opacity:.2; cursor: pointer;
+		}
+		.close:hover { opacity: .5; }
+	</style>
+ </head>
+ <body>
+  <h1>添加/删除节点</h1>
+	<button id="add-block">添加区块</button>
+	
+	<div class="container">
+		<!-- <div class="block">
+			<span class="close">×</span>
+		</div> -->
+	</div>
+	
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		$('#add-block').click(function(){
+			var ss= $(`<div class='block'>
+			 <span class='close'>x</span>
+			 </div>
+			 `)
+			 .css('background-color',`rgb(${parseInt(Math.random()*256)},${parseInt(Math.random()*256)},${parseInt(Math.random()*256)})`)
+	         .prependTo($('.container'))
+		
+		
+			
+			 
+		})
+		//功能1: 点击按钮添加新方块
+		//DOM4步
+		//1. 查找触发事件的元素
+		//本例中: 查找按钮
+		// id选择器
+		// $("#add-block")//因为只用一次，所以不用放变量
+		// //2. 绑定事件处理函数
+		// .click(function(){
+		// 	//3. 查找要修改的元素
+		// 	//本例中是要向class为container的div下加新元素
+		// 	//var $div=$(".container");//$div只在最后用了一次，所以也不用存在变量里
+		// 	//4. 修改元素
+		// 	//4.1 使用HTML片段创建一个新的块元素
+		// 	$(`<div class="block">
+		// 		<span class="close">×</span>
+		// 	</div>`)//新块元素
+		// 	//4.2 设置块元素的背景色为随机颜色
+		// 	.css("background-color",`rgb(${
+		// 		parseInt(Math.random()*256)//每个颜色值从0~255
+		// 	},${
+		// 		parseInt(Math.random()*256)//每个颜色值从0~255
+		// 	},${
+		// 		parseInt(Math.random()*256)//每个颜色值从0~255
+		// 	})`)
+		// 	//return .前正在操作的新块元素
+		// 	//4.3 将新创建的块插入到div的开头！
+		// 	//.前刚好也需要新块元素，加入到父元素div中
+		// 	//.prependTo($div);
+		// 	//.prependTo($(".container"));
+		// 	.prependTo(".container");//自动查找父元素！
+		// });
+		// //功能2: 点x，删除x所在的块元素
+		// //DOM4步
+		// //1. 查找触发事件的元素
+		// //本例中: class为container下的class为block下的class为close的span
+		// //问题: 直接写在<script>下的js代码只在页面首次加载时执行一次！而此时，页面中还没有x按钮呢！所以，什么也找不到，什么事件也绑定不上！
+		// // var $spans=$(".container>.block>.close");
+		// // console.log($spans);
+		// //解决: 本来多个平级的x按钮都需要单击，就不应该分别给每个x按钮绑定单击事件。就应该使用事件委托优化！事件应该只绑定在父元素上一份即可！所有x按钮都冒泡使用父元素上的单击事件处理哈函数！——复习DOM第四天！
+		// //var $div=$(".container");//只用一次
+		// $(".container")
+		// //2. 绑定事件处理函数
+		// //错误: 
+		// //$spans.click(function(){
+		// //正确: 
+		// .click(function(e){//要使用事件委托，必须添加e参数
+		// 	//alert("疼!");
+		// 	//3. 查找要修改的元素
+		// 	//本例中: 点span删除的起始是当前span的父元素
+		// 	//4. 修改元素
+		// 	//错误:
+		// 	//$(this).parent().remove();
+		// 	//正确:
+		// 	//本例中只有点在class为close的span元素上时才执行删除操作！
+		// 	var $span=$(e.target);
+		// 	if($span.hasClass("close")){
+		// 		$span.parent().remove();
+		// 	}
+		// })
+	</script>
+	
+ </body>
+</html>

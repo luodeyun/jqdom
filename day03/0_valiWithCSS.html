@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>实现带样式的表单验证</title>
+	<style>
+		table {
+			width: 700px
+		}
+
+		td:first-child {
+			width: 60px
+		}
+
+		td:nth-child(2) {
+			width: 200px
+		}
+
+		/*IE*/
+		td:first-child+td {
+			width: 200px
+		}
+
+		td span {
+			color: red
+		}
+
+		.vali_info {
+			display: none;
+		}
+
+		.txt_focus {
+			border-top: 2px solid black;
+			border-left: 2px solid black;
+		}
+
+		.vali_success,.vali_fail {
+			background-repeat: no-repeat;
+			background-position: left center;
+			display: block;
+		}
+		/*如果验证文本框中的内容通过，则修改文本框旁边的div的class为vali_success，文本框旁边的div就变成了验证通过的样式！*/
+		.vali_success {
+			background-image: url("../images/ok.png");
+			padding-left: 20px;
+			width: 0px;
+			height: 20px;
+			overflow: hidden;
+		}
+		/*当验证文本框的内容没通过，则修改文本框旁边的div的class为vali_fail，就能让文本框旁边的div变成验证失败的样子*/
+		.vali_fail {
+			background-image: url("../images/err.png");
+			border: 1px solid red;
+			background-color: #ddd;
+			color: Red;
+			padding-left: 30px;
+		}
+	</style>
+</head>
+
+<body>
+	<form id="form1">
+		<h2>增加管理员</h2>
+		<table>
+			<tr>
+				<td>姓名：</td>
+				<td>
+					<input name="username" />
+					<span>*</span>
+				</td>
+				<td>
+					<div class="vali_info">
+						10个字符以内的字母、数字或下划线的组合
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td>
+					<input type="password" name="pwd" />
+					<span>*</span>
+				</td>
+				<td>
+					<div class="vali_info">6位数字</div>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2">
+					<input type="submit" value="保存" />
+					<input type="reset" value="重填" />
+				</td>
+			</tr>
+		</table>
+	</form>
+	<script>
+		//想获得网页中唯一的一个form
+		//旧DOM: 
+		//var form=document.getElementById("form1");
+		//HTML DOM:
+		var form=document.forms[0];
+		console.log(form);
+		//DOM 4步
+		//1. 查找触发事件的元素
+		//本例中: 姓名文本框失去焦点时触发验证
+		// var inputName=document.getElementsByName("username")[0];//复习第一天查找元素
+		// var inputName=form.elements["username"];
+		var inputName=form.username;
+		//希望页面一加载，姓名文本框就自动获得焦点！
+		inputName.focus();
+		//2. 绑定事件处理函数
+		//当姓名文本框失去焦点时，自动执行
+		inputName.onblur=function(){
+			//3. 查找要修改的元素
+			//本例中: 要修改当前文本框的爹的下一个兄弟的第一个孩子
+			var div=this.parentElement
+									.nextElementSibling
+									.children[0];
+			//4. 修改元素
+			//先定义验证姓名的正则表达式
+			var reg=/^\w{1,10}$/;
+			//如果用正则表达式验证当前姓名文本框的内容通过
+			if(reg.test(this.value)==true){
+				//就修改div的class为验证通过的样式类名
+				div.className="vali_success";
+			}else{//否则如果验证不通过
+				//就修改div的class为验证不通过的样式类名
+				div.className="vali_fail";
+			}
+		}
+	</script>
+</body>
+
+</html>

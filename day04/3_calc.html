@@ -1,0 +1,67 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>取消与利用冒泡</title>
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<div id="keys">
+		<button>1</button>
+		<button>2</button>
+		<button>3</button>
+		<button>4</button><br>
+		<button>C</button>
+		<button>+</button>
+		<button>-</button>
+		<button>=</button>
+	</div>
+	<textarea id="sc" style="resize:none;width:200px; height:50px;" readonly></textarea>
+	<script>
+		//DOM 4步
+		//1. 查找触发事件的元素
+		//本例中: 因为多个平级的button都可以单击，所以，事件应该只绑定在他们共同的父元素上一份即可！
+		var div = document.getElementById("keys")
+		//2. 绑定事件处理函数
+		div.onclick = function (e) {
+			// alert("div 疼！");
+			//点哪个按钮，让哪个按钮变小花
+			//this->div
+			//this.innerHTML="❀";
+			//e.target代替this
+			//只有当前点击的目标元素是button时，才继续执行后续操作
+			if (e.target.nodeName === "BUTTON") {
+				//e.target.innerHTML = "❀"
+				//作业: 看注释实现完整计算器效果。
+				//3. 查找要修改的元素
+				//本例中:点按钮，要修改的是充当显示屏的id为sc的元素
+				var sc = document.getElementById("sc");
+				//4. 修改元素
+				//本例中: 根据本次点的按钮不同，执行不同的操作
+				//先判断点击的按钮的内容
+				switch (e.target.innerHTML) {
+					//如果是C，就清空显示屏文本框
+					case "C":
+						sc.value = "";
+						break;
+					//如果是=，就将文本框内容，交给eval计算结果，再将结果放回显示屏中
+					case "=":
+						//错误处理: 复习第一阶段
+						try {//尝试执行
+							//eval: 可计算字符串类型的js表达式的值.——复习第一阶段
+							sc.value = eval(sc.value);
+						} catch (err) {//如果出错
+							sc.value = err;//就把错误信息显示在文本框中
+						}
+						break;
+					//点击其余所有数字按钮和+ -号按钮，都只将按钮内容追加到文本框中算式结尾即可，不做计算
+					default:
+						sc.value += e.target.innerHTML;
+				}
+			}
+		}
+	</script>
+</body>
+
+</html>

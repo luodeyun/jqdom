@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <ul>
+    <li>85</li>
+    <li>91</li>
+    <li>73</li>
+    <li>59</li>
+  </ul>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //比如，经常需要对找到的所有元素内容求和
+    jQuery.fn.sum=function(){
+      console.log(`调用一次自定义的sum()函数`)
+      var result=0;
+      //遍历sum的.前的jquery查找结果对象中每个DOM元素
+      this.each(function(i,elem){
+        //每遍历一个DOM元素，就将其内容累加到result上
+        result+=parseInt(elem.innerHTML);
+      })
+      return result;
+    }
+    //希望: 
+    var result=$("ul>li").sum();
+    console.log(result);//308
+  </script>
+</body>
+</html>

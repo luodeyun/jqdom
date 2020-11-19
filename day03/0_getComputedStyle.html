@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1{
+      background-color:red
+    }
+  </style>
+</head>
+<body>
+  <h1 id="h1" style="color:yellow">Welcome</h1>
+  <script>
+    var h1=document.getElementById("h1");
+    //获取: 
+    //不好的做法:
+    // //想获取h1的字体颜色属性: 
+    // console.log(h1.style.color);//内联
+    // //想获取h1的背景颜色属性: 
+    // console.log(h1.style.backgroundColor);//样式表
+    // //想获得h1的字体大小: 
+    // console.log(h1.style.fontSize);//默认样式表
+    //好的做法: 
+     var style=getComputedStyle(h1);
+    console.log(style);
+    //想获取h1的字体颜色属性:  
+    // console.log(style.color);
+    // //想获取h1的背景颜色属性: 
+    // console.log(style.backgroundColor);
+    // //想获得h1的字体大小: 
+    // console.log(style.fontSize);//32px
+    //想把h1的字体大小改为64px
+   h1.style.fontSize="64px";//报错: Failed to set the 'font-size' property on 'CSSStyleDeclaration': These styles are computed, and therefore the 'font-size' property is read-only.
+    //不能修改计算后的属性中的font-size属性。因为这些样式是计算后的，所以是只读的。
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    img {
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <img id="s1" src="img/star.png"><br />
+  <img id="s2" src="img/star.png"><br />
+  <img id="s3" src="img/star.png"><br />
+  <img id="s4" src="img/star.png"><br />
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    /*
+    s1在屏幕左上角的小星星， 点击后从左移动到屏幕右边
+    s2在屏幕左上角的小星星，点击后从左移动到屏幕右边，再移动到下边——走直角
+    s3在屏幕左上角的小星星，点击后从左上角移动到屏幕右下边，走斜线
+    s4点击小星星，变大、变淡....  直至消失
+  */
+  $('#s1').click(function(){
+      if($(this).is(":animated")){
+        $(this).stop()
+      }else{
+        var left1=$(this).css('left').slice(0,-2)
+        console.log(left1);
+        
+        $(this).animate({
+      left:+left1+300
+    },2000)
+      }
+  })
+  $('#s2').click(function(){
+    $(this).animate({
+      left:300
+    },2000)
+    .animate({
+      top:300
+    },2000)
+  })
+    // $("#s1").click(function () {
+    //   var $this=$(this);//因为要反复使用了！
+    //   //如果当前星星正在播放动画，就停止动画
+    //   if($this.is(":animated")){
+    //     $this.stop();
+    //   }else{//否则如果当前星星没有在播放动画，就启动动画
+    //     $this.animate({
+    //       left:400
+    //     },2000)
+    //   }
+    // })
+    // $("#s2").click(function () {
+    //   var $this=$(this);//因为要反复使用了！
+    //   //如果当前星星正在播放动画，就停止动画
+    //   if($this.is(":animated")){
+    //     $this.stop(true);
+    //   }else{
+    //     //动画队列=========================================
+    //     $this.animate({left:400},2000).animate({top:200},1000)
+    //     //        播放                      等待
+    //     //================================================
+    //   }
+    // })
+    // $("#s3").click(function(){
+    //   var $this=$(this);//因为要反复使用了！
+    //   //如果当前星星正在播放动画，就停止动画
+    //   if($this.is(":animated")){
+    //     $this.stop();
+    //   }else{
+    //     $this.animate({
+    //       left:400,
+    //       top:200
+    //     },3000)
+    //   }
+    // })
+    // $("#s4").click(function(){
+    //   alert("疼!")
+    //   $(this).animate({//animate底层是js定时器——异步
+    //     width:256,
+    //     height:256,
+    //     opacity:0
+    //   },2000,function(){
+    //     //要求动画结束后，将第四颗星星，彻底隐藏
+    //     $(this).hide();//display:none
+    //   })
+    //   //直接放在animate()之后的代码，不会等待animate()执行完，就提前执行了！
+    // })
+  </script>
+</body>
+
+</html>

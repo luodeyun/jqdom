@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <table id="data">
+    <thead>
+      <tr>
+        <th>商品名称</th>
+        <th>描述</th>
+        <th>单价</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //必须用live server运行，且端口必须是5500
+    //1. 去东哥新浪云服务器请求学子商城首页商品列表/index
+    $.ajax({
+      url:"http://xzserver.applinzi.com/index",
+      type:"get",
+      // data:{},//因为不需要携带参数
+      dataType:"json",
+      success:function(res){
+        console.log(res);
+        var html="";//定义变量html，准备接每行的html判断
+        //遍历结果数组中每个商品
+        for(var p of res){
+          //每遍历一个商品，就创建一行HTML片段
+          //同时设置行中每个td的内容为商品对象p的对应属性值。然后把新行的代码添加到HTML变量中
+          html+=`<tr>
+            <td>${p.title}</td>
+            <td>${p.details}</td>
+            <td>¥${p.price.toFixed(2)}</td>
+          </tr>`;
+        }
+        //循环结束后，将html中保存的所有HTML代码一次性添加到tbody中
+        //追加到id为data的table下的tbody内
+        $(html).appendTo("#data>tbody")
+      }
+    })
+  </script>
+</body>
+</html>

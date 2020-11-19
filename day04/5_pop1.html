@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>在当前显示区范围内实现点不到的小方块</title>
+	<style>
+		body{
+			margin: 0;
+		padding: 0;
+		}
+		div{
+		
+			width:100px;
+			height:100px;
+			border:1px solid #ccc; 
+		transform: translateX(100px);
+		background-color: #bfa;
+              background-size:100%;
+		}
+	</style>
+	
+ </head>
+ <body>
+	<div id="pop"></div>
+  <script>
+		var pop=document.getElementById("pop");
+		pop.onclick=function(e){
+			console.log(e);
+			
+			console.log(pop.offsetLeft, pop.offsetTop);
+			console.log(pop.offsetWidth, pop.offsetHeight);
+			console.log(pop.clientLeft,pop.clientTop);
+			console.log(pop.clientWidth,pop.clientHeight);
+			
+			console.log(e.clientX, e.clientY);
+			console.log(e.offsetX, e.offsetY);
+		}
+	</script>
+ </body>
+</html>

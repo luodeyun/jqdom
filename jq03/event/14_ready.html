@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> new document </title>
+	<meta charset="utf-8">
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		//在onload事件中显示整个页面加载完成的时间
+    //在ready事件中显示DOM内容加载完成的时间
+	</script>
+	<script src='14_ready.js'>
+		//引入后立即执行！
+		//window.addEventListener("load",function(){
+			//只能在整个页面加载完成后才能执行！
+			//$("#btn1").click(function(){ ... })
+		//}
+	</script>
+	<script src="14_ready2.js">
+		//window.addEventListener("load",function(){
+			//只能在整个页面加载完成后才能执行！
+			//$("#btn2").click(function(){ ... })
+		//}
+	</script>
+</head>
+
+<body>
+	<button id="btn1">click me 1</button>
+	<button id="btn2">click me 2</button>
+	
+</body>
+
+</html>
